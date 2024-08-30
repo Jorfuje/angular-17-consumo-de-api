@@ -1,0 +1,65 @@
+<div
+  *ngIf="alertMessage"
+  class="alert"
+  [ngClass]="{
+    'alert-success': alertType === 'success',
+    'alert-danger': alertType === 'danger'
+  }"
+>
+  {{ alertMessage }}
+</div>
+
+<div class="container">
+  @if (message === 'Success') {
+  <h1>Usuario:</h1>
+  <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="nombre">Nombre: </label>
+      <input
+        class="form-control"
+        type="text"
+        name="nombre"
+        id="nombre"
+        [(ngModel)]="user.nombre"
+        required
+      />
+    </div>
+    <div>
+      <label for="apellido">Apellido: </label>
+      <input
+        class="form-control"
+        type="text"
+        name="apellido"
+        id="apellido"
+        [(ngModel)]="user.apellido"
+        required
+      />
+    </div>
+    <div>
+      <label for="nombre">Edad: </label>
+      <input
+        class="form-control"
+        type="number"
+        name="edad"
+        id="edad"
+        [(ngModel)]="user.edad"
+        required
+      />
+    </div>
+    <div>
+      <label for="email">Email: </label>
+      <input
+        class="form-control"
+        type="email"
+        name="email"
+        id="email"
+        [(ngModel)]="user.email"
+        required
+      />
+    </div>
+    <div class="text-end">
+      <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+  </form>
+  }
+</div>

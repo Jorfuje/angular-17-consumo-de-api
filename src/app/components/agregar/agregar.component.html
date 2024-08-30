@@ -1,0 +1,77 @@
+<div
+  *ngIf="alertMessage"
+  class="alert"
+  [ngClass]="{
+    'alert-success': alertType === 'success',
+    'alert-danger': alertType === 'danger'
+  }"
+>
+  {{ alertMessage }}
+</div>
+
+<div class="container">
+  <h1>Usuario:</h1>
+  <form [formGroup]="formularioUser" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="nombre">Nombre: </label>
+      <input
+      [ngClass]="{'is-invalid': hasErrors('nombre', 'required')}"
+        type="text"
+        class="form-control"
+        id="nombre"
+        formControlName="nombre"
+      />
+      <div class="text-danger" *ngIf="hasErrors('nombre', 'required')" >
+        Nombre requerido
+      </div>
+    </div>
+    <div>
+      <label for="apellido">Apellido: </label>
+      <input
+      [ngClass]="{'is-invalid': hasErrors('apellido', 'required')}"
+        type="text"
+        class="form-control"
+        id="apellido"
+        formControlName="apellido"
+      />
+      <div class="text-danger" *ngIf="hasErrors('apellido', 'required')" >
+        Apellido requerido
+      </div>
+    </div>
+    <div>
+      <label for="nombre">Edad: </label>
+      <input
+      [ngClass]="{'is-invalid': hasErrors('edad', 'required') || hasErrors('edad', 'min')}"
+        type="number"
+        class="form-control"
+        id="edad"
+        formControlName="edad"
+      />
+      <div class="text-danger" *ngIf="hasErrors('edad', 'required')" >
+        Edad requerida
+      </div>
+      <div class="text-danger" *ngIf="hasErrors('edad', 'min')" >
+        Edad minima invalida
+      </div>
+    </div>
+    <div>
+      <label for="email">Email: </label>
+      <input
+      [ngClass]="{'is-invalid': hasErrors('email', 'required')}"
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+      />
+      <div class="text-danger" *ngIf="hasErrors('email', 'email')" >
+        Email invalido
+      </div>
+      <div class="text-danger" *ngIf="hasErrors('email', 'required')" >
+        Email requerido
+      </div>
+    </div>
+    <div class="text-end">
+        <button style="margin-top: 10px;" type="submit" class="btn btn-primary" [disabled]="!formularioUser.valid">Enviar</button>
+    </div>
+  </form>
+</div>
